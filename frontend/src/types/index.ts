@@ -4,7 +4,7 @@ export interface User {
 }
 
 export interface Conversation {
-  id: number;
+  id: string;
   title: string;
   model: string;
   created_at: string;

@@ -2,10 +2,10 @@ import type { Conversation } from '../types';
 
 interface Props {
   conversations: Conversation[];
-  activeId: number | null;
-  onSelect: (id: number) => void;
+  activeId: string | null;
+  onSelect: (id: string) => void;
   onNew: () => void;
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
   onClose?: () => void;
 }
 

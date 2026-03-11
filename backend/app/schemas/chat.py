@@ -2,5 +2,5 @@ from pydantic import BaseModel
 
 
 class ChatRequest(BaseModel):
-    conversation_id: int
+    conversation_id: str  # uuid
     message: str

@@ -26,7 +26,7 @@ export default function App() {
           <Routes>
             <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
             <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
-            <Route path="/" element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
+            <Route path="/*" element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

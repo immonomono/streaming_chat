@@ -1,7 +1,19 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
+import rehypeRaw from 'rehype-raw';
+import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import CodeBlock from './CodeBlock';
+
+const sanitizeSchema = {
+  ...defaultSchema,
+  tagNames: [...(defaultSchema.tagNames || []), 'br'],
+  attributes: {
+    ...defaultSchema.attributes,
+    code: [...(defaultSchema.attributes?.code || []), 'className'],
+    span: [...(defaultSchema.attributes?.span || []), 'className', 'style'],
+  },
+};
 import type { Message } from '../types';
 
 interface Props {
@@ -26,7 +38,7 @@ export default function MessageBubble({ message }: Props) {
           <div className="prose dark:prose-invert prose-sm max-w-none prose-pre:p-0 prose-pre:bg-transparent">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeHighlight]}
+              rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeSchema], rehypeHighlight]}
               components={{
                 code({ className, children, ...props }) {
                   const isInline = !className;
